@@ -52,7 +52,7 @@ async function runConversion(config, listeners) {
     }
 
     if (workbook.worksheets.length) {
-      const baseName = 'mapinfo-converted.xlsx'
+      const baseName = resolveCombinedWorkbookName(config.combinedName)
       const outputPath = path.join(resolveOutputFolder(config), baseName)
       await workbook.xlsx.writeFile(outputPath)
       summary.outputs.push(outputPath)
@@ -94,6 +94,13 @@ function normalizeListeners(listeners) {
     log: (listeners && listeners.log) || (() => {}),
     progress: (listeners && listeners.progress) || (() => {}),
   }
+}
+
+function resolveCombinedWorkbookName(raw) {
+  const requested = String(raw || '').trim()
+  const stripped = requested.replace(/[\\/:*?"<>|]+/g, '').replace(/^\.+/, '').trim()
+  const base = stripped || 'mapinfo-converted'
+  return /\.xlsx$/i.test(base) ? base : `${base}.xlsx`
 }
 
 function validateConfig(config) {
@@ -164,4 +171,5 @@ function processPair(mifPath, midPath, config, workbook, log) {
 
 module.exports = {
   runConversion,
+  resolveCombinedWorkbookName,
 }

@@ -12,6 +12,7 @@ function getDefaultSettings() {
     skipBlack: true,
     paintRows: true,
     combineIntoOneWorkbook: false,
+    combinedName: '',
     includeCsv: false,
     includeColorColumn: true,
     freezeHeader: true,

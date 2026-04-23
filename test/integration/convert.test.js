@@ -167,12 +167,33 @@ test('runConversion combines multiple inputs into a single workbook when request
   assert.strictEqual(summary.processed, 2)
 
   const combined = path.join(outDir, 'mapinfo-converted.xlsx')
-  assert.ok(fs.existsSync(combined))
+  assert.ok(fs.existsSync(combined), 'default combined workbook name should be used')
 
   const workbook = new ExcelJS.Workbook()
   await workbook.xlsx.readFile(combined)
   const names = workbook.worksheets.map((s) => s.name).sort()
   assert.deepStrictEqual(names, ['alpha', 'beta'])
+})
+
+test('runConversion uses a custom combined workbook filename when provided', async () => {
+  const workDir = mkTmp()
+  const outDir = mkTmp()
+  copyFixture('simple-colors.mif', workDir, 'alpha.mif')
+  copyFixture('simple-colors.mid', workDir, 'alpha.mid')
+
+  await runConversion(
+    baseConfig({
+      inputFolder: workDir,
+      outputFolder: outDir,
+      combineIntoOneWorkbook: true,
+      combinedName: '2026 regions',
+      paintRows: false,
+    }),
+    () => {},
+  )
+
+  assert.ok(fs.existsSync(path.join(outDir, '2026 regions.xlsx')))
+  assert.ok(!fs.existsSync(path.join(outDir, 'mapinfo-converted.xlsx')))
 })
 
 test('runConversion logs a warning when brush count does not match row count', async () => {

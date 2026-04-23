@@ -20,6 +20,8 @@ const elements = {
   skipBlack: document.getElementById('skipBlack'),
   paintRows: document.getElementById('paintRows'),
   combineIntoOneWorkbook: document.getElementById('combineIntoOneWorkbook'),
+  combinedName: document.getElementById('combinedName'),
+  combinedNameBlock: document.getElementById('combinedNameBlock'),
   includeCsv: document.getElementById('includeCsv'),
   includeColorColumn: document.getElementById('includeColorColumn'),
   freezeHeader: document.getElementById('freezeHeader'),
@@ -97,6 +99,13 @@ function bindAutoSave() {
   for (const cb of checkboxes) {
     cb.addEventListener('change', scheduleSave)
   }
+
+  elements.combineIntoOneWorkbook.addEventListener('change', updateCombinedNameVisibility)
+  elements.combinedName.addEventListener('input', scheduleSave)
+}
+
+function updateCombinedNameVisibility() {
+  elements.combinedNameBlock.classList.toggle('hidden', !elements.combineIntoOneWorkbook.checked)
 }
 
 function scheduleSave() {
@@ -323,6 +332,7 @@ function collectSettings() {
     skipBlack: elements.skipBlack.checked,
     paintRows: elements.paintRows.checked,
     combineIntoOneWorkbook: elements.combineIntoOneWorkbook.checked,
+    combinedName: elements.combinedName.value.trim(),
     includeCsv: elements.includeCsv.checked,
     includeColorColumn: elements.includeColorColumn.checked,
     freezeHeader: elements.freezeHeader.checked,
@@ -345,6 +355,8 @@ function applySettings(settings) {
   elements.skipBlack.checked = settings.skipBlack !== false
   elements.paintRows.checked = settings.paintRows !== false
   elements.combineIntoOneWorkbook.checked = Boolean(settings.combineIntoOneWorkbook)
+  elements.combinedName.value = settings.combinedName || ''
+  updateCombinedNameVisibility()
   elements.includeCsv.checked = Boolean(settings.includeCsv)
   elements.includeColorColumn.checked = settings.includeColorColumn !== false
   elements.freezeHeader.checked = settings.freezeHeader !== false

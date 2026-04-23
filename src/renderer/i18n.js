@@ -36,6 +36,8 @@
       'section.log': 'Log',
       'drop.hint': 'Drop MIF/MID files or a folder here',
       'field.language': 'Language',
+      'field.combinedName': 'Combined workbook file name',
+      'placeholder.combinedName': 'mapinfo-converted.xlsx',
       'progress.of': '{done} of {total}',
     },
     ru: {
@@ -74,6 +76,8 @@
       'section.log': 'Журнал',
       'drop.hint': 'Перетащите сюда файлы MIF/MID или папку',
       'field.language': 'Язык',
+      'field.combinedName': 'Имя объединённой книги',
+      'placeholder.combinedName': 'mapinfo-converted.xlsx',
       'progress.of': '{done} из {total}',
     },
     kk: {
@@ -112,6 +116,8 @@
       'section.log': 'Журнал',
       'drop.hint': 'MIF/MID файлдарын немесе қалтаны осы жерге тастаңыз',
       'field.language': 'Тіл',
+      'field.combinedName': 'Біріктірілген кітап атауы',
+      'placeholder.combinedName': 'mapinfo-converted.xlsx',
       'progress.of': '{total} ішінен {done}',
     },
   }
