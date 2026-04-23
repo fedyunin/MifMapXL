@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MifMapXL</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <h1>MifMapXL</h1>
+          <p data-i18n="app.subtitle">Convert MIF/MID into XLSX with optional row fill from region color.</p>
+        </div>
+        <div class="hero-actions">
+          <select
+            id="languageSelect"
+            class="lang-select"
+            data-i18n-title="field.language"
+            aria-label="Language"
+          >
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+            <option value="kk">Қазақша</option>
+          </select>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section class="card drop-zone" id="sourceCard">
+          <h2 data-i18n="section.source">Source</h2>
+
+          <div class="mode-switch">
+            <label class="radio">
+              <input type="radio" name="inputMode" value="folder" checked />
+              <span data-i18n="mode.folder">Folder</span>
+            </label>
+            <label class="radio">
+              <input type="radio" name="inputMode" value="files" />
+              <span data-i18n="mode.files">Files</span>
+            </label>
+          </div>
+
+          <div id="folderModeBlock" class="stack">
+            <label class="field-label" data-i18n="field.inputFolder">Input folder</label>
+            <div class="inline-row">
+              <input id="inputFolder" type="text" readonly data-i18n-placeholder="placeholder.inputFolder" />
+              <button id="selectInputFolderButton" data-i18n="btn.browse">Browse</button>
+            </div>
+            <label class="checkbox">
+              <input id="recursive" type="checkbox" checked />
+              <span data-i18n="opt.recursive">Scan subfolders</span>
+            </label>
+          </div>
+
+          <div id="filesModeBlock" class="stack hidden">
+            <label class="field-label" data-i18n="field.selectedFiles">Selected files</label>
+            <div class="inline-row">
+              <input id="selectedFilesSummary" type="text" readonly data-i18n-placeholder="placeholder.selectedFiles" />
+              <button id="selectFilesButton" data-i18n="btn.chooseFiles">Choose files</button>
+            </div>
+            <div id="selectedFilesList" class="file-list empty" data-i18n="list.noFiles">No files selected</div>
+          </div>
+
+          <div class="drop-hint" data-i18n="drop.hint">Drop MIF/MID files or a folder here</div>
+        </section>
+
+        <section class="card">
+          <h2 data-i18n="section.output">Output</h2>
+          <label class="field-label" data-i18n="field.outputFolder">Output folder</label>
+          <div class="inline-row">
+            <input id="outputFolder" type="text" readonly data-i18n-placeholder="placeholder.outputFolder" />
+            <button id="selectOutputFolderButton" data-i18n="btn.browse">Browse</button>
+          </div>
+          <p class="hint" data-i18n="hint.output">If empty, output goes to the selected folder or near the selected files.</p>
+        </section>
+
+        <section class="card">
+          <h2 data-i18n="section.options">Options</h2>
+          <div class="options-grid">
+            <label class="checkbox">
+              <input id="paintRows" type="checkbox" checked />
+              <span data-i18n="opt.paintRows">Fill row background in Excel</span>
+            </label>
+            <label class="checkbox">
+              <input id="skipBlack" type="checkbox" checked />
+              <span data-i18n="opt.skipBlack">Skip black color (#000000)</span>
+            </label>
+            <label class="checkbox">
+              <input id="combineIntoOneWorkbook" type="checkbox" />
+              <span data-i18n="opt.combine">Combine all files into one workbook</span>
+            </label>
+            <label class="checkbox">
+              <input id="includeCsv" type="checkbox" />
+              <span data-i18n="opt.csv">Also export CSV</span>
+            </label>
+            <label class="checkbox">
+              <input id="includeColorColumn" type="checkbox" checked />
+              <span data-i18n="opt.colorColumn">Add color column</span>
+            </label>
+            <label class="checkbox">
+              <input id="freezeHeader" type="checkbox" checked />
+              <span data-i18n="opt.freeze">Freeze header row</span>
+            </label>
+            <label class="checkbox">
+              <input id="autofilter" type="checkbox" checked />
+              <span data-i18n="opt.autofilter">Add autofilter</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="card actions-card">
+          <div class="actions-row">
+            <button id="startButton" class="primary-button" data-i18n="btn.convert">Convert</button>
+            <button id="openOutputButton" class="secondary-button" disabled data-i18n="btn.openOutput">Open output folder</button>
+            <button id="clearLogButton" class="secondary-button" data-i18n="btn.clearLog">Clear log</button>
+          </div>
+          <div class="progress hidden" id="progressRow">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-label" id="progressLabel">0 / 0</div>
+          </div>
+          <div id="status" class="status idle" data-i18n="status.ready">Ready</div>
+        </section>
+
+        <section class="card log-card">
+          <div class="log-header">
+            <h2 data-i18n="section.log">Log</h2>
+          </div>
+          <div id="logOutput" class="log-output"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./i18n.js"></script>
+    <script src="./renderer.js"></script>
+  </body>
+</html>

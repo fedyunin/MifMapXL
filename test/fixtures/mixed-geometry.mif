@@ -1,0 +1,22 @@
+Version 300
+Charset "Neutral"
+Delimiter ","
+Columns 2
+  name Char(50)
+  kind Char(30)
+Data
+
+Region 1
+  5
+  0 0
+  10 0
+  10 10
+  0 10
+  0 0
+    Pen (1,2,0)
+    Brush (2,255,16777215)
+  Center 5 5
+Point 50 50
+    Symbol (35,0,12)
+Line 100 100 110 110
+    Pen (1,2,0)
