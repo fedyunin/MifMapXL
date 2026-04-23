@@ -14,8 +14,8 @@ The links below always point to the latest published release.
 | **Windows** — installer | [MifMapXL-win-x64-setup.exe](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-win-x64-setup.exe) |
 | **Windows** — portable | [MifMapXL-win-x64-portable.exe](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-win-x64-portable.exe) |
 | **macOS** — Apple Silicon | [MifMapXL-mac-arm64.dmg](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-mac-arm64.dmg) |
-| **Linux** — Debian/Ubuntu | [MifMapXL-linux-x64.deb](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-linux-x64.deb) |
-| **Linux** — AppImage | [MifMapXL-linux-x64.AppImage](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-linux-x64.AppImage) |
+| **Linux** — Debian/Ubuntu | [MifMapXL-linux-amd64.deb](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-linux-amd64.deb) |
+| **Linux** — AppImage | [MifMapXL-linux-x86_64.AppImage](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-linux-x86_64.AppImage) |
 
 All builds from the [releases page](https://github.com/fedyunin/MifMapXL/releases).
 
