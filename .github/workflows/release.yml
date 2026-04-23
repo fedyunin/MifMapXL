@@ -36,7 +36,7 @@ jobs:
           if-no-files-found: ignore
           path: |
             dist/*.dmg
-            dist/*-mac.zip
+            dist/*mac*.zip
             dist/*.AppImage
             dist/*.deb
             dist/*.exe
@@ -58,7 +58,7 @@ jobs:
           generate_release_notes: true
           files: |
             artifacts/*.dmg
-            artifacts/*-mac.zip
+            artifacts/*mac*.zip
             artifacts/*.AppImage
             artifacts/*.deb
             artifacts/*.exe

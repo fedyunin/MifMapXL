@@ -1,6 +1,6 @@
 {
   "name": "mifmapxl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Desktop app to convert MapInfo MIF/MID files to Excel with region row colors.",
   "main": "src/main/main.js",
   "author": {
@@ -27,6 +27,7 @@
   "build": {
     "appId": "com.fedyunin.mifmapxl",
     "productName": "MifMapXL",
+    "artifactName": "${productName}-${os}-${arch}.${ext}",
     "directories": {
       "output": "dist"
     },
@@ -43,7 +44,11 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "perMachine": false
+      "perMachine": false,
+      "artifactName": "${productName}-${os}-${arch}-setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "${productName}-${os}-${arch}-portable.${ext}"
     },
     "mac": {
       "category": "public.app-category.utilities",

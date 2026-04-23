@@ -1,6 +1,35 @@
 # MifMapXL
 
+[![Latest release](https://img.shields.io/github/v/release/fedyunin/MifMapXL)](https://github.com/fedyunin/MifMapXL/releases/latest)
+[![Tests](https://github.com/fedyunin/MifMapXL/actions/workflows/test.yml/badge.svg)](https://github.com/fedyunin/MifMapXL/actions/workflows/test.yml)
+
 Desktop app on Electron for converting MapInfo `.mif/.mid` pairs into `.xlsx` with a new `region_color_hex` column and optional row fill.
+
+## Download
+
+The links below always point to the latest published release.
+
+| Platform | File |
+| --- | --- |
+| **Windows** — installer | [MifMapXL-win-x64-setup.exe](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-win-x64-setup.exe) |
+| **Windows** — portable | [MifMapXL-win-x64-portable.exe](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-win-x64-portable.exe) |
+| **macOS** — Apple Silicon | [MifMapXL-mac-arm64.dmg](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-mac-arm64.dmg) |
+| **Linux** — Debian/Ubuntu | [MifMapXL-linux-x64.deb](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-linux-x64.deb) |
+| **Linux** — AppImage | [MifMapXL-linux-x64.AppImage](https://github.com/fedyunin/MifMapXL/releases/latest/download/MifMapXL-linux-x64.AppImage) |
+
+All builds from the [releases page](https://github.com/fedyunin/MifMapXL/releases).
+
+### macOS first run
+
+Builds are unsigned. macOS will refuse to open the app with “MifMapXL.app is damaged”. Remove the quarantine attribute once:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/MifMapXL.app
+```
+
+### Windows SmartScreen
+
+Unsigned Windows builds may show “Windows protected your PC”. Click **More info → Run anyway**.
 
 ## Features
 
@@ -13,25 +42,19 @@ Desktop app on Electron for converting MapInfo `.mif/.mid` pairs into `.xlsx` wi
 - remembers settings between launches
 - log window with processing output
 
-## Install
+## Build from source
 
 ```bash
 npm install
+npm run dev           # run in development
+npm test              # run the test suite
+npm run dist:mac      # DMG + zip (macOS)
+npm run dist:linux    # AppImage + deb (Linux)
+npm run dist:win      # portable + NSIS installer (Windows)
+npm run dist          # build for the host platform
 ```
 
-## Run in development
-
-```bash
-npm run dev
-```
-
-## Build Windows exe
-
-```bash
-npm run dist
-```
-
-The build output will be in the `dist` folder.
+Artifacts are written to `dist/`.
 
 ## Notes
 
