@@ -2,7 +2,8 @@ const fs = require('fs')
 
 function writeCsvFile(filePath, headers, rows, colors, options) {
   const includeColorColumn = !options || options.includeColorColumn !== false
-  const finalHeaders = includeColorColumn ? [...headers, 'region_color_hex'] : [...headers]
+  const colorColumnName = (options && options.colorColumnName) || 'region_color_hex'
+  const finalHeaders = includeColorColumn ? [...headers, colorColumnName] : [...headers]
   const lines = [finalHeaders.map(escapeCsvValue).join(',')]
 
   for (let i = 0; i < rows.length; i += 1) {

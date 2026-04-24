@@ -103,6 +103,11 @@ function resolveCombinedWorkbookName(raw) {
   return /\.xlsx$/i.test(base) ? base : `${base}.xlsx`
 }
 
+function resolveColorColumnName(raw) {
+  const requested = String(raw || '').trim()
+  return requested || 'region_color_hex'
+}
+
 function validateConfig(config) {
   if (config.inputMode === 'folder' && !config.inputFolder) {
     throw new Error('Select input folder')
@@ -144,6 +149,7 @@ function processPair(mifPath, midPath, config, workbook, log) {
     autofilter: config.autofilter,
     freezeHeader: config.freezeHeader,
     includeColorColumn: config.includeColorColumn !== false,
+    colorColumnName: resolveColorColumnName(config.colorColumnName),
   })
 
   const outputs = []
@@ -158,6 +164,7 @@ function processPair(mifPath, midPath, config, workbook, log) {
     const csvPath = path.join(resolveOutputFolder(config), `${path.basename(mifPath, path.extname(mifPath))}.csv`)
     writeCsvFile(csvPath, headers, normalizedRows, mifInfo.brushColors, {
       includeColorColumn: config.includeColorColumn !== false,
+      colorColumnName: resolveColorColumnName(config.colorColumnName),
     })
     outputs.push(csvPath)
     log(`Created: ${csvPath}`)
@@ -172,4 +179,5 @@ function processPair(mifPath, midPath, config, workbook, log) {
 module.exports = {
   runConversion,
   resolveCombinedWorkbookName,
+  resolveColorColumnName,
 }

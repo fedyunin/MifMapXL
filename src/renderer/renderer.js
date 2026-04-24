@@ -24,6 +24,8 @@ const elements = {
   combinedNameBlock: document.getElementById('combinedNameBlock'),
   includeCsv: document.getElementById('includeCsv'),
   includeColorColumn: document.getElementById('includeColorColumn'),
+  colorColumnName: document.getElementById('colorColumnName'),
+  colorColumnNameBlock: document.getElementById('colorColumnNameBlock'),
   freezeHeader: document.getElementById('freezeHeader'),
   autofilter: document.getElementById('autofilter'),
   folderModeBlock: document.getElementById('folderModeBlock'),
@@ -102,10 +104,16 @@ function bindAutoSave() {
 
   elements.combineIntoOneWorkbook.addEventListener('change', updateCombinedNameVisibility)
   elements.combinedName.addEventListener('input', scheduleSave)
+  elements.includeColorColumn.addEventListener('change', updateColorColumnNameVisibility)
+  elements.colorColumnName.addEventListener('input', scheduleSave)
 }
 
 function updateCombinedNameVisibility() {
   elements.combinedNameBlock.classList.toggle('hidden', !elements.combineIntoOneWorkbook.checked)
+}
+
+function updateColorColumnNameVisibility() {
+  elements.colorColumnNameBlock.classList.toggle('hidden', !elements.includeColorColumn.checked)
 }
 
 function scheduleSave() {
@@ -335,6 +343,7 @@ function collectSettings() {
     combinedName: elements.combinedName.value.trim(),
     includeCsv: elements.includeCsv.checked,
     includeColorColumn: elements.includeColorColumn.checked,
+    colorColumnName: elements.colorColumnName.value.trim(),
     freezeHeader: elements.freezeHeader.checked,
     autofilter: elements.autofilter.checked,
   }
@@ -359,6 +368,8 @@ function applySettings(settings) {
   updateCombinedNameVisibility()
   elements.includeCsv.checked = Boolean(settings.includeCsv)
   elements.includeColorColumn.checked = settings.includeColorColumn !== false
+  elements.colorColumnName.value = settings.colorColumnName || ''
+  updateColorColumnNameVisibility()
   elements.freezeHeader.checked = settings.freezeHeader !== false
   elements.autofilter.checked = settings.autofilter !== false
 

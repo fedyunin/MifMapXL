@@ -38,6 +38,8 @@
       'field.language': 'Language',
       'field.combinedName': 'Combined workbook file name',
       'placeholder.combinedName': 'mapinfo-converted.xlsx',
+      'field.colorColumnName': 'Color column name',
+      'placeholder.colorColumnName': 'region_color_hex',
       'progress.of': '{done} of {total}',
     },
     ru: {
@@ -78,6 +80,8 @@
       'field.language': 'Язык',
       'field.combinedName': 'Имя объединённой книги',
       'placeholder.combinedName': 'mapinfo-converted.xlsx',
+      'field.colorColumnName': 'Название колонки с цветом',
+      'placeholder.colorColumnName': 'region_color_hex',
       'progress.of': '{done} из {total}',
     },
     kk: {
@@ -118,6 +122,8 @@
       'field.language': 'Тіл',
       'field.combinedName': 'Біріктірілген кітап атауы',
       'placeholder.combinedName': 'mapinfo-converted.xlsx',
+      'field.colorColumnName': 'Түс бағанының атауы',
+      'placeholder.colorColumnName': 'region_color_hex',
       'progress.of': '{total} ішінен {done}',
     },
   }

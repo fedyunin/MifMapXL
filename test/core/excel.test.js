@@ -41,6 +41,11 @@ test('addSheet omits the color column when includeColorColumn is false', () => {
   assert.deepStrictEqual(sheet.getRow(2).values.slice(1), ['1', '2'])
 })
 
+test('addSheet uses a custom color column header when colorColumnName is provided', () => {
+  const { sheet } = buildSheet({ colorColumnName: 'Fill' })
+  assert.deepStrictEqual(sheet.getRow(1).values.slice(1), ['a', 'b', 'Fill'])
+})
+
 test('addSheet fills cells with the region color when paintRows is enabled', () => {
   const { sheet } = buildSheet()
   assert.strictEqual(sheet.getRow(2).getCell(1).fill.fgColor.argb, 'FFFF0000')

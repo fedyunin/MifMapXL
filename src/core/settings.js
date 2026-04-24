@@ -15,6 +15,7 @@ function getDefaultSettings() {
     combinedName: '',
     includeCsv: false,
     includeColorColumn: true,
+    colorColumnName: '',
     freezeHeader: true,
     autofilter: true,
   }

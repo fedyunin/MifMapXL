@@ -1,7 +1,7 @@
 const test = require('node:test')
 const assert = require('node:assert')
 
-const { resolveCombinedWorkbookName } = require('../../src/core/convert')
+const { resolveCombinedWorkbookName, resolveColorColumnName } = require('../../src/core/convert')
 
 test('resolveCombinedWorkbookName falls back to mapinfo-converted.xlsx for empty input', () => {
   assert.strictEqual(resolveCombinedWorkbookName(''), 'mapinfo-converted.xlsx')
@@ -28,4 +28,16 @@ test('resolveCombinedWorkbookName strips path separators and filesystem-forbidde
 test('resolveCombinedWorkbookName collapses names that reduce to nothing', () => {
   assert.strictEqual(resolveCombinedWorkbookName('///'), 'mapinfo-converted.xlsx')
   assert.strictEqual(resolveCombinedWorkbookName('.'), 'mapinfo-converted.xlsx')
+})
+
+test('resolveColorColumnName falls back to region_color_hex for empty input', () => {
+  assert.strictEqual(resolveColorColumnName(''), 'region_color_hex')
+  assert.strictEqual(resolveColorColumnName(null), 'region_color_hex')
+  assert.strictEqual(resolveColorColumnName('   '), 'region_color_hex')
+})
+
+test('resolveColorColumnName trims whitespace and accepts any non-empty string', () => {
+  assert.strictEqual(resolveColorColumnName('  Color  '), 'Color')
+  assert.strictEqual(resolveColorColumnName('Цвет региона'), 'Цвет региона')
+  assert.strictEqual(resolveColorColumnName('Fill #hex'), 'Fill #hex')
 })

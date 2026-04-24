@@ -1,6 +1,7 @@
 function addSheet(workbook, sheetName, headers, rows, brushColors, options) {
   const includeColorColumn = options.includeColorColumn !== false
-  const finalHeaders = includeColorColumn ? [...headers, 'region_color_hex'] : [...headers]
+  const colorColumnName = options.colorColumnName || 'region_color_hex'
+  const finalHeaders = includeColorColumn ? [...headers, colorColumnName] : [...headers]
   const sheet = workbook.addWorksheet(sheetName)
 
   sheet.addRow(finalHeaders)
