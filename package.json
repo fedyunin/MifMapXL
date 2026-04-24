@@ -1,6 +1,6 @@
 {
   "name": "mifmapxl",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Desktop app to convert MapInfo MIF/MID files to Excel with region row colors.",
   "main": "src/main/main.js",
   "author": {
